@@ -6,33 +6,43 @@
 /*   By: amunoz-b <amunoz-b@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 17:46:57 by amunoz-b          #+#    #+#             */
-/*   Updated: 2023/09/11 18:24:01 by amunoz-b         ###   ########.fr       */
+/*   Updated: 2023/09/13 16:56:06 by amunoz-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stddef.h>
 
-size_t	ft_strlen(const char *c);
-
-char	*ft_strdup(const char *s1)
+static int	str_len(char *str)
 {
-	char	*v;
-	size_t	len;
-	size_t	i;
+	int	i;
 
-	len = ft_strlen(s1);
-	v = malloc(sizeof(char) * (len + 1));
-	if (v == NULL)
+	i = 0;
+	while (str[i] != '\0')
+	{
+		i++;
+	}
+	return (i);
+}
+
+char	*ft_strdup(char *src)
+{
+	char	*srt;
+	int		i;
+	int		j;
+
+	j = str_len(src);
+	srt = (char *) malloc(sizeof(char) * (j + 1));
+	if (srt == NULL)
 	{
 		return (NULL);
 	}
 	i = 0;
-	while (v[i] != '\0')
+	while (src[i] != '\0')
 	{
-		v[i] = s1[i];
+		srt[i] = src[i];
 		i++;
 	}
-	v[i] = '\0';
-	return (v);
+	srt[i] = '\0';
+	return (srt);
 }

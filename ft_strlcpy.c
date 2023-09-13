@@ -6,7 +6,7 @@
 /*   By: amunoz-b <amunoz-b@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 15:32:47 by amunoz-b          #+#    #+#             */
-/*   Updated: 2023/09/11 19:38:02 by amunoz-b         ###   ########.fr       */
+/*   Updated: 2023/09/13 17:34:50 by amunoz-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,13 @@ size_t	ft_strlen(const char *c);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
 	size_t	i;
+	size_t	f;
 
+	f = ft_strlen(src);
+	if (src[f] != '\0')
+	{
+		f++;
+	}
 	if (!dst || !src)
 		return (0);
 	if (dstsize > 0)
@@ -30,5 +36,5 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 		}
 		dst[i] = '\0';
 	}
-	return (ft_strlen(src));
+	return (f);
 }
