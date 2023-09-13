@@ -1,42 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amunoz-b <amunoz-b@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/08 16:25:11 by amunoz-b          #+#    #+#             */
-/*   Updated: 2023/09/11 20:08:32 by amunoz-b         ###   ########.fr       */
+/*   Created: 2023/09/11 16:04:59 by amunoz-b          #+#    #+#             */
+/*   Updated: 2023/09/11 16:41:33 by amunoz-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include <stdlib.h>
 
-size_t	ft_strlen(const char *c);
+void	*ft_bzero(void *s, size_t n);
 
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+void	*ft_calloc(size_t count, size_t size)
 {
-	size_t	i;
-	size_t	j;
-	size_t	k;
+	void	*v;
 
-	i = 0;
-	j = 0;
-	k = 0;
-	while (dst[i] != '\0')
-		i++;
-	while (src[k])
-		k++;
-	if (dstsize <= i)
-		k += dstsize;
-	else
-		k += i;
-	while (i + 1 < dstsize && src[j] != '\0')
-	{
-		dst[i] = src[j];
-		j++;
-		i++;
-	}
-	dst[i] = '\0';
-	return (k);
+	v = malloc(count * size);
+	if (v == NULL)
+		return (NULL);
+	ft_bzero(v, (count * size));
+	return (v);
 }

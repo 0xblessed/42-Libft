@@ -1,42 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amunoz-b <amunoz-b@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/08 16:25:11 by amunoz-b          #+#    #+#             */
-/*   Updated: 2023/09/11 20:08:32 by amunoz-b         ###   ########.fr       */
+/*   Created: 2023/09/11 17:46:57 by amunoz-b          #+#    #+#             */
+/*   Updated: 2023/09/11 18:24:01 by amunoz-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include <stddef.h>
 
 size_t	ft_strlen(const char *c);
 
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+char	*ft_strdup(const char *s1)
 {
+	char	*v;
+	size_t	len;
 	size_t	i;
-	size_t	j;
-	size_t	k;
 
-	i = 0;
-	j = 0;
-	k = 0;
-	while (dst[i] != '\0')
-		i++;
-	while (src[k])
-		k++;
-	if (dstsize <= i)
-		k += dstsize;
-	else
-		k += i;
-	while (i + 1 < dstsize && src[j] != '\0')
+	len = ft_strlen(s1);
+	v = malloc(sizeof(char) * (len + 1));
+	if (v == NULL)
 	{
-		dst[i] = src[j];
-		j++;
+		return (NULL);
+	}
+	i = 0;
+	while (v[i] != '\0')
+	{
+		v[i] = s1[i];
 		i++;
 	}
-	dst[i] = '\0';
-	return (k);
+	v[i] = '\0';
+	return (v);
 }

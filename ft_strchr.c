@@ -6,19 +6,24 @@
 /*   By: amunoz-b <amunoz-b@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 18:06:38 by amunoz-b          #+#    #+#             */
-/*   Updated: 2023/09/08 19:12:26 by amunoz-b         ###   ########.fr       */
+/*   Updated: 2023/09/11 20:50:45 by amunoz-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
+
 char	*ft_strchr(const char *s, int c)
 {
-	while (*s != '\0' && *s != c)
+	c = (char)c;
+	while (*s)
 	{
+		if (*s == c)
+		{
+			return ((char *)s);
+		}
 		s++;
 	}
 	if (*s == c)
-	{
 		return ((char *)s);
-	}
-	return (0);
+	return (NULL);
 }

@@ -6,9 +6,11 @@
 /*   By: amunoz-b <amunoz-b@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 14:33:44 by amunoz-b          #+#    #+#             */
-/*   Updated: 2023/09/08 14:48:13 by amunoz-b         ###   ########.fr       */
+/*   Updated: 2023/09/11 16:48:38 by amunoz-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stdlib.h>
 
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {

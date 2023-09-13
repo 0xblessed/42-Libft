@@ -6,9 +6,11 @@
 /*   By: amunoz-b <amunoz-b@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 13:38:10 by amunoz-b          #+#    #+#             */
-/*   Updated: 2023/09/08 13:43:34 by amunoz-b         ###   ########.fr       */
+/*   Updated: 2023/09/11 17:31:44 by amunoz-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stddef.h>
 
 size_t	ft_strlen(const char *c)
 {
