@@ -1,43 +1,38 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: amunoz-b <amunoz-b@student.42barcel>       +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/09/11 16:44:16 by amunoz-b          #+#    #+#              #
-#    Updated: 2023/09/13 19:37:27 by amunoz-b         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+SRCS	= ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isascii.c ft_isalpha.c ft_isdigit.c ft_isprint.c ft_itoa.c ft_memchr.c ft_memcmp.c \
+	ft_memcpy.c ft_memmove.c ft_memset.c ft_putchar_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_putstr_fd.c ft_split.c ft_strchr.c ft_strdup.c \
+	ft_strjoin.c ft_strlcat.c ft_strlcpy.c ft_strlen.c ft_strmapi.c ft_strncmp.c ft_strnstr.c ft_strrchr.c ft_strtrim.c ft_substr.c \
+	ft_tolower.c ft_toupper.c
 
-NAME = libft.a
 
-CC = cc
+OBJS		= ${SRCS:.c=.o}
 
-CFLAGS = -Wall -Wextra -Werror -I $(INCL)
+OBJB		= ${SRCB:.c=.o}
 
-SRCS =	ft_bzero.c ft_atoi.c ft_calloc.c ft_isalnum.c ft_isascii.c ft_isalpha.c ft_isdigit.c ft_isprint.c ft_itoa.c ft_memccpy.c \
-        ft_memchr.c ft_memcmp.c ft_memcpy.c ft_memmove.c ft_memset.c ft_putchar_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_putstr_fd.c ft_split.c \
-        ft_strchr.c ft_strdup.c ft_strjoin.c ft_strlcat.c ft_strlcpy.c ft_strlen.c ft_strmapi.c ft_strncmp.c ft_strnstr.c ft_strrchr.c \
-        ft_strtrim.c ft_substr.c ft_tolower.c ft_toupper.c
+NAME		= libft.a
 
-OBJ = $(SRCS:.c=.o)
+CC			= cc
 
-all: $(NAME)
+RM			= rm -f
 
-$(NAME): $(OBJ)
-	ar rcs $(NAME) $(OBJ)
-	ranlib $(NAME)
+FLAGS		= -Wall -Werror -Wextra
 
-%.c : %.o Makefile
-	$(CC) $(CFLAGS) -c $< -o $@
+.c.o:
+			${CC} ${FLAGS} -c $< -o ${<:.c=.o}
+
+${NAME}:	${OBJS}
+			ar rc  ${NAME} ${OBJS}
+			ranlib ${NAME}
+
+bonus:		${OBJS} ${OBJB}
+			ar rc  ${NAME} ${OBJB}
+			ranlib ${NAME}
+
+all:		${NAME}
 
 clean:
-	rm -rf $(OBJ)
+			${RM} ${OBJS} ${OBJB}
 
-fclean: clean
-	rm -rf $(NAME)
+fclean:		clean
+			${RM} ${NAME}
 
-re: fclean all
-
-.PHONY: all clean fclean re
+re:			fclean all bonus
