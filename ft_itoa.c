@@ -1,55 +1,65 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amunoz-b <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/16 18:40:24 by amunoz-b          #+#    #+#             */
+/*   Updated: 2023/09/16 18:40:56 by amunoz-b         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
 #include <stdlib.h>
-#include <stdio.h>
-char *ft_itoa(int n)
+
+static size_t	ft_intlen(long nb)
 {
-    size_t  i;
-    size_t  size;
-    int     j;
-    int     sign;
+	size_t	count;
 
-    i = 0;
-    size = 0;
-    sign = 1;
-    // Manejar el caso de n negativo
-    if (n < 0)
-    {
-        sign = -1;
-        n = -n;
-        size++;
-    }
-    j= n;
-    while (j > 0)
-    {
-        j = j / 10;
-        size++;
-    }
-    char *str = (char *)malloc(sizeof(char) * (size + 1));
-    if (!str)
-        return (NULL);
-    if (sign == -1)
-        str[i++] = '-';
-    if (n == 0)
-        str[i++] = '0';
-    else
-    {
-        while (n > 0)
-        {
-            str[i++] = '0' + (n % 10);
-            n = n / 10;
-        }
-    }
-    str[i] = '\0';
+	count = 0;
+	if (nb == 0)
+	{
+		count++;
+		return (count);
+	}
+	if (nb < 0)
+	{
+		nb = nb * -1;
+		count++;
+	}
+	while (nb > 0)
+	{
+		nb = nb / 10;
+		count++;
+	}
+	return (count);
+}
 
-    // Revertir la cadena
-    size_t start = (sign == -1) ? 1 : 0;
-    size_t end = i - 1;
-    while (start < end)
-    {
-        char temp = str[start];
-        str[start] = str[end];
-        str[end] = temp;
-        start++;
-        end--;
-    }
-    return str;
+char	*ft_itoa(int n)
+{
+	char	*strnum;
+	size_t	len;
+	long	nb;
+
+	nb = n;
+	len = ft_intlen(nb);
+	strnum = (char *)malloc(sizeof(char) * len + 1);
+	if (!strnum)
+		return (NULL);
+	strnum[len--] = '\0';
+	if (n == 0)
+		strnum[0] = '0';
+	if (nb < 0)
+	{
+		strnum[0] = '-';
+		nb = nb * -1;
+	}
+	while (nb > 0)
+	{
+		strnum[len] = (nb % 10) + '0';
+		nb = nb / 10;
+		len--;
+	}
+	return (strnum);
 }
