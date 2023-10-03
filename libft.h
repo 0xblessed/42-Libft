@@ -6,12 +6,14 @@
 /*   By: amunoz-b <amunoz-b@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 16:44:31 by amunoz-b          #+#    #+#             */
-/*   Updated: 2023/09/16 14:23:46 by amunoz-b         ###   ########.fr       */
+/*   Updated: 2023/09/20 19:08:29 by amunoz-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
 #include <unistd.h>
+#include <stdlib.h>
+#include <string.h>
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);

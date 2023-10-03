@@ -6,12 +6,11 @@
 /*   By: amunoz-b <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 18:10:33 by amunoz-b          #+#    #+#             */
-/*   Updated: 2023/09/16 19:50:12 by amunoz-b         ###   ########.fr       */
+/*   Updated: 2023/09/29 17:27:20 by amunoz-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
 static size_t	ft_numstring(const char *s, char c)
 {
@@ -48,8 +47,11 @@ static size_t	ft_numchar(const char *s, char c)
 
 static char	**ft_free_str(const char **str, size_t len_str)
 {
-	while (len_str--)
+	while (len_str > 0)
+	{
 		free((void *)str[len_str]);
+		len_str--;
+	}
 	free(str);
 	return (NULL);
 }
@@ -64,7 +66,7 @@ char	**ft_split(const char *s, char c)
 	i = 0;
 	sl = 0;
 	len = ft_numstring(s, c);
-	str = (char **)malloc(sizeof(char *) * (len + 1));
+	str = malloc(sizeof(char *) * (len + 1));
 	if (!str)
 		return (NULL);
 	while (i < len)
@@ -72,13 +74,13 @@ char	**ft_split(const char *s, char c)
 		while (*s == c)
 			s++;
 		sl = ft_numchar((const char *)s, c);
-		str[i] = (char *)malloc(sizeof(char) * sl + 1);
+		str[i] = malloc(sizeof(char) * sl + 1);
 		if (!str[i])
-			return (ft_free_str((const char **)str, len));
+			ft_free_str((const char **)str, i);
 		ft_strlcpy(str[i], s, sl + 1);
 		s = (ft_strchr(s, (int)c));
 		i++;
 	}
-	str[i] = 0;
+	str[i] = NULL;
 	return (str);
 }

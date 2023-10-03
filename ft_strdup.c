@@ -10,10 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stddef.h>
+#include "libft.h"
 
-static int	str_len(char *str)
+static int	str_len(const char *str)
 {
 	int	i;
 
@@ -25,7 +24,7 @@ static int	str_len(char *str)
 	return (i);
 }
 
-char	*ft_strdup(char *src)
+char	*ft_strdup(const char *src)
 {
 	char	*srt;
 	int		i;
